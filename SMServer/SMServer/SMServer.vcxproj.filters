@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="SourceCode">
+      <UniqueIdentifier>{ff8e296e-1ade-4f94-8b51-6f6a5b65ac86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\Main">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="SourceCode\PreCompile">
+      <UniqueIdentifier>{74a48e36-75ee-416d-918d-f9c2f53fe78d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\SMServer">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="SourceCode\GlobalBuffer">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{aa101926-35a0-4937-b9b6-df26228db10a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\LogManager">
+      <UniqueIdentifier>{091f0098-b117-41d4-8d1f-e3ebd157f96a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\vasprintf">
+      <UniqueIdentifier>{86186be7-34ea-4c98-b56f-ce1e37a3dd44}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>SourceCode\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="SMServer.cpp">
+      <Filter>SourceCode\SMServer</Filter>
+    </ClCompile>
+    <ClCompile Include="LogManager.cpp">
+      <Filter>Utility\LogManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Stdafx.h">
+      <Filter>SourceCode\PreCompile</Filter>
+    </ClInclude>
+    <ClInclude Include="SMServer.h">
+      <Filter>SourceCode\SMServer</Filter>
+    </ClInclude>
+    <ClInclude Include="LogManager.h">
+      <Filter>Utility\LogManager</Filter>
+    </ClInclude>
+    <ClInclude Include="vasprintf.h">
+      <Filter>Utility\vasprintf</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
