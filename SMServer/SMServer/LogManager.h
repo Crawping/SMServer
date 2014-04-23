@@ -2,16 +2,16 @@
 
 namespace SM
 {
-	struct LogData
+	typedef struct _LogData
 	{
 		int m_id;
 		char* m_write_data;
-	};
+	} LogData;
 
-
-	// id에 지정된 ostream이 없는 경우
+	// id에 지정된 FILE이 없는 경우
 	const static int LOG_DEFAULT = 0;
 	// Log를 찍을 때는 항상 LogManager를 통해 찍자.
+	// LogManager는 서버에 하나만 있으면 되므로 싱글톤 패턴을 적용한다.
 	class LogManager
 	{
 	private:
@@ -44,4 +44,7 @@ namespace SM
 	private:
 		map<int, FILE*> m_handle_map;
 	};
+
+	// 싱글톤 패턴에서 GetInstance()의 퍼포먼스 문제를 해결하기 위해 글로벌 인스턴스를 하나 만들어준다.
+	extern LogManager* g_LogManager;
 }

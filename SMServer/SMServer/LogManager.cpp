@@ -4,6 +4,8 @@
 
 namespace SM
 {
+	LogManager* g_LogManager;
+
 	LogManager* LogManager::m_instance = nullptr;
 	LogManager* LogManager::GetInstance()
 	{
