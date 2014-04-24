@@ -66,7 +66,7 @@ namespace SM
 	}
 
 	// 로그를 콘솔에 바로 출력한다.
-	void LogManager::Logging(const char* p_string, ...)
+	void LogManager::Logging(const char* p_string, ...) const
 	{
 		va_list argument_list;
 
@@ -77,7 +77,7 @@ namespace SM
 		va_end(argument_list);
 	}
 	// 로그를 큐에 등록한다.
-	void LogManager::Logging(const int p_id, const char* p_string, ...)
+	void LogManager::Logging(const int p_id, const char* p_string, ...) const
 	{
 		if (m_handle_map.find(p_id) == m_handle_map.end())
 		{

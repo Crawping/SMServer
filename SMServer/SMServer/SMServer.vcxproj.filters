@@ -15,10 +15,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="SourceCode\GlobalBuffer">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Utility">
       <UniqueIdentifier>{aa101926-35a0-4937-b9b6-df26228db10a}</UniqueIdentifier>
     </Filter>
@@ -30,6 +26,10 @@
     </Filter>
     <Filter Include="SourceCode\ClientSession">
       <UniqueIdentifier>{fe5f0b39-ae58-4751-8244-604471d2df77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\GlobalBuffer">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -44,6 +44,9 @@
     </ClCompile>
     <ClCompile Include="ClientSession.cpp">
       <Filter>SourceCode\ClientSession</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalBuffer.cpp">
+      <Filter>Utility\GlobalBuffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="ClientSession.h">
       <Filter>SourceCode\ClientSession</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalBuffer.h">
+      <Filter>Utility\GlobalBuffer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

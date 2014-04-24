@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Utility.h"
-
 namespace SM
 {
 	const static unsigned int accept_queue_limit = 100;

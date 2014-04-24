@@ -1,6 +1,8 @@
 #include "Stdafx.h"
+#include "Utility.h"
 
 #include "SMServer.h"
+#include "GlobalBuffer.h"
 
 using namespace SM;
 
@@ -8,6 +10,7 @@ int main(void)
 {
 	g_LogManager = new LogManager;
 	g_SMServer = new SMServer;
+	g_GlobalBuffer = new GlobalBuffer;
 
 	g_LogManager->RegisterFile(10, "log_test.txt");
 

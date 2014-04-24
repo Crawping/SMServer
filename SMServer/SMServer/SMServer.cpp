@@ -1,4 +1,5 @@
 #include "Stdafx.h"
+#include "Utility.h"
 
 #include "SMServer.h"
 
@@ -7,7 +8,7 @@ namespace SM
 	SMServer* g_SMServer = nullptr;
 
 	SMServer::SMServer()
-		: m_listener(0), m_server_iocp_handle(0)
+		: m_listener(0), m_server_iocp_handle(0), m_accept_thread_handle(0)
 	{
 
 	}
@@ -31,7 +32,7 @@ namespace SM
 		WSADATA wsadata;
 		SOCKADDR_IN server_adder;
 
-		// Winsock initialize
+		// Winsock
 		version = MAKEWORD(2, 2);
 		if (WSAStartup(version, &wsadata) != NULL)
 		{
@@ -51,11 +52,11 @@ namespace SM
 			return false;
 		}
 
-		// Turn off nagle algorithm
+		// nagle algorithm
 		BOOL opt = TRUE;
 		setsockopt(m_listener, IPPROTO_TCP, TCP_NODELAY, (const char*)&opt, sizeof(opt));
 
-		// bind to socket
+		// bind
 		ZeroMemory(&server_adder, sizeof(server_adder));
 		server_adder.sin_family = AF_INET;
 		server_adder.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -68,7 +69,7 @@ namespace SM
 			return false;
 		}
 
-		// Start to listen
+		// listen
 		if (listen(m_listener, accept_queue_limit) == SOCKET_ERROR)
 		{
 			g_LogManager->Logging("Fail to listen() : %d\n", WSAGetLastError());
@@ -77,7 +78,7 @@ namespace SM
 			return false;
 		}
 
-		// Create iocp handle
+		// iocp 핸들 생성
 		m_server_iocp_handle = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, 0);
 		if (INVALID_HANDLE_VALUE == m_server_iocp_handle)
 		{
@@ -87,7 +88,7 @@ namespace SM
 			return false;
 		}
 
-		// Create worker thread
+		// 워커 쓰레드 생성
 		SYSTEM_INFO system_info;
 		GetSystemInfo(&system_info);
 		DWORD thread_id;
@@ -114,7 +115,7 @@ namespace SM
 
 	bool SMServer::Run()
 	{
-		// Start accept thread
+		// accept 쓰레드 시작
 		DWORD thread_id;
 		m_accept_thread_handle = (HANDLE)_beginthreadex(NULL, 0, ProcessAcceptThreadFunction, NULL, 0, (unsigned int*)&thread_id);
 		if (m_accept_thread_handle == NULL)

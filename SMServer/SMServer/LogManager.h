@@ -25,9 +25,9 @@ namespace SM
 
 	public:
 		// 로그를 콘솔에 바로 출력한다.
-		void Logging(const char* p_string, ...);
+		void Logging(const char* p_string, ...) const;
 		// 로그를 큐에 등록한다.
-		void Logging(const int p_id, const char* p_string, ...);
+		void Logging(const int p_id, const char* p_string, ...) const;
 
 	private:
 		// 등록된 큐를 뽑아서 기록한다.
