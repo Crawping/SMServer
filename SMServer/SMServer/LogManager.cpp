@@ -6,20 +6,9 @@ namespace SM
 {
 	LogManager* g_LogManager;
 
-	LogManager* LogManager::m_instance = nullptr;
-	LogManager* LogManager::GetInstance()
-	{
-		if (m_instance == NULL) m_instance = new LogManager;
-		return m_instance;
-	}
-	void LogManager::Release()
-	{
-		CloseHandle(LogManager::GetInstance()->m_thread_handle);
-		delete m_instance;
-	}
-
 	LogManager::LogManager()
 	{
+		// 큐에 등록된 로그를 뽑아서 파일에 기록할 쓰레드를 하나 만들어 준다.
 		m_thread_handle = (HANDLE)_beginthreadex(NULL, 0, LoggingThreadFunction, NULL, 0, (unsigned int*)&m_thread_id);
 		if (m_thread_handle == NULL)
 		{
@@ -44,6 +33,7 @@ namespace SM
 		);
 	}
 
+	// 로그 남길 파일을 생성하고 열어둔다.
 	bool LogManager::RegisterFile(const int p_id, const char* p_filepath)
 	{
 		if (m_handle_map.find(p_id) != m_handle_map.end())
@@ -68,6 +58,7 @@ namespace SM
 		return true;
 	}
 
+	// 로그를 콘솔에 바로 출력한다.
 	void LogManager::Logging(const char* p_string, ...)
 	{
 		va_list argument_list;
@@ -78,6 +69,7 @@ namespace SM
 		fprintf(stderr, writeData);
 		va_end(argument_list);
 	}
+	// 로그를 큐에 등록한다.
 	void LogManager::Logging(const int p_id, const char* p_string, ...)
 	{
 		if (m_handle_map.find(p_id) == m_handle_map.end())
@@ -100,6 +92,7 @@ namespace SM
 		va_end(argument_list);
 	}
 
+	// 등록된 큐를 뽑아서 기록한다.
 	unsigned int WINAPI LogManager::LoggingThreadFunction(LPVOID p_param)
 	{
 		while (true)
@@ -111,6 +104,6 @@ namespace SM
 	void CALLBACK LogManager::LoggingAPCFunction(ULONG_PTR p_param)
 	{
 		LogData* log_data = (LogData*)p_param;
-		fprintf_s(LogManager::GetInstance()->m_handle_map[log_data->m_id], log_data->m_write_data);
+		fprintf_s(g_LogManager->m_handle_map[log_data->m_id], log_data->m_write_data);
 	}
 }

@@ -6,7 +6,8 @@ using namespace SM;
 
 int main(void)
 {
-	SingletonInitializer();
+	g_LogManager = new LogManager;
+
 	g_LogManager->RegisterFile(10, "log_test.txt");
 
 	for (int i = 0; i < 10; i++)
