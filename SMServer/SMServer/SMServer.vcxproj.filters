@@ -28,6 +28,9 @@
     <Filter Include="Utility\vasprintf">
       <UniqueIdentifier>{86186be7-34ea-4c98-b56f-ce1e37a3dd44}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SourceCode\ClientSession">
+      <UniqueIdentifier>{fe5f0b39-ae58-4751-8244-604471d2df77}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -38,6 +41,9 @@
     </ClCompile>
     <ClCompile Include="LogManager.cpp">
       <Filter>Utility\LogManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientSession.cpp">
+      <Filter>SourceCode\ClientSession</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +61,9 @@
     </ClInclude>
     <ClInclude Include="Utility.h">
       <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientSession.h">
+      <Filter>SourceCode\ClientSession</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

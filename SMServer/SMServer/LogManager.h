@@ -16,6 +16,8 @@ namespace SM
 	public:
 		LogManager();
 		~LogManager();
+	public:
+		void Release();
 
 	public:
 		// 로그 남길 파일을 생성하고 열어둔다.

@@ -4,7 +4,7 @@
 
 namespace SM
 {
-	LogManager* g_LogManager;
+	LogManager* g_LogManager = nullptr;
 
 	LogManager::LogManager()
 	{
@@ -31,6 +31,13 @@ namespace SM
 				fclose(it.second);
 			}
 		);
+	}
+	void LogManager::Release()
+	{
+		if (m_thread_handle)
+		{
+			CloseHandle(m_thread_handle);
+		}
 	}
 
 	// 로그 남길 파일을 생성하고 열어둔다.
@@ -75,6 +82,7 @@ namespace SM
 		if (m_handle_map.find(p_id) == m_handle_map.end())
 		{
 			Logging("Can't find file of [%d] id.\n", p_id);
+			assert(false);
 		}
 
 		va_list argument_list;
@@ -100,10 +108,10 @@ namespace SM
 			SleepEx(INFINITE, TRUE);
 		}
 	}
-
 	void CALLBACK LogManager::LoggingAPCFunction(ULONG_PTR p_param)
 	{
 		LogData* log_data = (LogData*)p_param;
 		fprintf_s(g_LogManager->m_handle_map[log_data->m_id], log_data->m_write_data);
+		free(log_data->m_write_data);
 	}
 }
