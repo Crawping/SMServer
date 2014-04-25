@@ -79,6 +79,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ClientSession.cpp" />
+    <ClCompile Include="Synchronizer.cpp" />
     <ClCompile Include="GlobalBuffer.cpp" />
     <ClCompile Include="LogManager.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -86,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClientSession.h" />
+    <ClInclude Include="Synchronizer.h" />
     <ClInclude Include="GlobalBuffer.h" />
     <ClInclude Include="LogManager.h" />
     <ClInclude Include="SMServer.h" />

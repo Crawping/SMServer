@@ -31,6 +31,9 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Utility\CriticalSection">
+      <UniqueIdentifier>{0bfa9c0f-668b-4eff-aa46-9a7d80592f03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -47,6 +50,9 @@
     </ClCompile>
     <ClCompile Include="GlobalBuffer.cpp">
       <Filter>Utility\GlobalBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Synchronizer.cpp">
+      <Filter>Utility\CriticalSection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="GlobalBuffer.h">
       <Filter>Utility\GlobalBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Synchronizer.h">
+      <Filter>Utility\CriticalSection</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

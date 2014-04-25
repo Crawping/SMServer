@@ -14,5 +14,6 @@ namespace SM
 		bool m_connected;
 		bool m_logon;
 	private:
+		
 	};
 }

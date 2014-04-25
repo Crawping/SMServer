@@ -21,6 +21,11 @@ int main(void)
 
 	g_SMServer->Release();
 	g_LogManager->Release();
+	g_GlobalBuffer->Release();
+
+	delete g_SMServer;
+	delete g_LogManager;
+	delete g_GlobalBuffer;
 
 	return 0;
 }

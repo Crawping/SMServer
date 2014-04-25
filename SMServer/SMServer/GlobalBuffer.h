@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Synchronizer.h"
+
 namespace SM
 {
 	// 글로벌 버퍼 크기 설정, 기본 100MB
@@ -13,14 +15,21 @@ namespace SM
 	public:
 		GlobalBuffer();
 		~GlobalBuffer();
+	public:
+		void Release();
 
 	public:
-		char* GetFreeBufferPos();
+		void ExtendBuffer();
+	public:
+		char* PopFreeBufferPos();
+		void PushFreeBufferPos(char* p_free_buffer_pos);
 
 	private:
-		char* m_buffer;
+		CRITICAL_SECTION m_critical_section;
 	private:
-		list<char*> m_free_buffer_list;
+		map<char*, char*> m_buffer;
+	private:
+		static list<char*> m_free_buffer_list;
 	};
 
 	extern GlobalBuffer* g_GlobalBuffer;

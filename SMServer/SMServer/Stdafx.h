@@ -12,6 +12,9 @@
 // For Thread
 #include <Process.h>
 
+// For Critical Section
+#include <WinBase.h>
+
 // For Console Debug
 #include <assert.h>
 #include <stdio.h>
