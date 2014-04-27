@@ -9,6 +9,9 @@
 #include <Windows.h>
 #pragma comment(lib, "winmm.lib")
 
+// For Object Pool
+#include <stdint.h>
+
 // For Thread
 #include <Process.h>
 
@@ -33,3 +36,5 @@
 #include <list>
 #include <map>
 using namespace std;
+
+extern CRITICAL_SECTION g_critical_section;

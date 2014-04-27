@@ -3,14 +3,13 @@
 
 #include "SMServer.h"
 #include "GlobalBuffer.h"
+#include "ClientManager.h"
 
 using namespace SM;
 
 int main(void)
 {
-	g_LogManager = new LogManager;
 	g_SMServer = new SMServer;
-	g_GlobalBuffer = new GlobalBuffer;
 
 	g_LogManager->RegisterFile(10, "log_test.txt");
 
@@ -19,13 +18,11 @@ int main(void)
 	for (int i = 0; i < 10; i++)
 		g_LogManager->Logging("콘솔에 로그를 적어보자! [%d]\n", i);
 
-	g_SMServer->Release();
-	g_LogManager->Release();
-	g_GlobalBuffer->Release();
+	g_SMServer->Initializing(9001);
+	g_SMServer->Run();
 
+	g_SMServer->Release();
 	delete g_SMServer;
-	delete g_LogManager;
-	delete g_GlobalBuffer;
 
 	return 0;
 }

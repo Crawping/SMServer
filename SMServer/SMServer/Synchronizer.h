@@ -1,7 +1,9 @@
 #pragma once
 
 #ifndef SYNCHRONIZE_CS
-#define SYNCHRONIZE_CS(name) Synchronizer synchronizer(name)
+#define SYNCHRONIZE_CS(name) \
+Synchronizer synchronizer(name)
+//if (TryEnterCriticalSection(name))
 #endif
 
 namespace SM

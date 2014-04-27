@@ -22,10 +22,10 @@ namespace SM
 		bool Run();
 
 	private:
-		// 큐에 담긴 Accept 처리를 담당한다.
-		static unsigned int WINAPI ProcessAcceptThreadFunction(LPVOID p_param);
-		static void CALLBACK ProcessAcceptAPCFunction(ULONG_PTR p_param);
+		// 워커 쓰레드
 		// 서버 메인 로직 처리 부분
+		static unsigned int WINAPI WorkerThreadFunction(LPVOID p_param);
+		static void CALLBACK TimerThreadFunction(LPVOID lpArg, DWORD dwTimerLowValue, DWORD dwTimerHighValue);
 
 	private:
 		SOCKET m_listener;

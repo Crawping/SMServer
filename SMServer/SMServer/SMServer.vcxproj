@@ -78,7 +78,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CircularBuffer.cpp" />
+    <ClCompile Include="ClientManager.cpp" />
     <ClCompile Include="ClientSession.cpp" />
+    <ClCompile Include="PacketHandler.cpp" />
     <ClCompile Include="Synchronizer.cpp" />
     <ClCompile Include="GlobalBuffer.cpp" />
     <ClCompile Include="LogManager.cpp" />
@@ -86,7 +89,13 @@
     <ClCompile Include="SMServer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ClientManager.h" />
+    <ClInclude Include="PacketDefine.h" />
+    <ClInclude Include="CircularBuffer.h" />
     <ClInclude Include="ClientSession.h" />
+    <ClInclude Include="ObjectPool.h" />
+    <ClInclude Include="PacketHandler.h" />
+    <ClInclude Include="ProducerConsumerQueue.h" />
     <ClInclude Include="Synchronizer.h" />
     <ClInclude Include="GlobalBuffer.h" />
     <ClInclude Include="LogManager.h" />

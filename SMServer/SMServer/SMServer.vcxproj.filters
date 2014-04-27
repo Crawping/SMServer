@@ -34,6 +34,24 @@
     <Filter Include="Utility\CriticalSection">
       <UniqueIdentifier>{0bfa9c0f-668b-4eff-aa46-9a7d80592f03}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utility\ObjcetPool">
+      <UniqueIdentifier>{487d25e2-8dfb-416f-bf12-cdbc19a24a73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\ProducerConsumerQueue">
+      <UniqueIdentifier>{50ffc2c6-f60a-4cf4-877b-c338c5b8789b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\CircularBuffer">
+      <UniqueIdentifier>{0ee7fe68-2423-4e13-8452-8cb51745b97d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\PacketHandler">
+      <UniqueIdentifier>{46fb0d21-1602-440a-863d-4704a3576b27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PacketDefine">
+      <UniqueIdentifier>{483b5c3b-df6a-449c-b35e-416a0e9bb07b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceCode\ClientManager">
+      <UniqueIdentifier>{eff56936-30c0-4d1b-9e63-f911304e0201}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -53,6 +71,15 @@
     </ClCompile>
     <ClCompile Include="Synchronizer.cpp">
       <Filter>Utility\CriticalSection</Filter>
+    </ClCompile>
+    <ClCompile Include="CircularBuffer.cpp">
+      <Filter>Utility\CircularBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketHandler.cpp">
+      <Filter>SourceCode\PacketHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientManager.cpp">
+      <Filter>SourceCode\ClientManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +106,24 @@
     </ClInclude>
     <ClInclude Include="Synchronizer.h">
       <Filter>Utility\CriticalSection</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectPool.h">
+      <Filter>Utility\ObjcetPool</Filter>
+    </ClInclude>
+    <ClInclude Include="ProducerConsumerQueue.h">
+      <Filter>Utility\ProducerConsumerQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="CircularBuffer.h">
+      <Filter>Utility\CircularBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketHandler.h">
+      <Filter>SourceCode\PacketHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketDefine.h">
+      <Filter>PacketDefine</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientManager.h">
+      <Filter>SourceCode\ClientManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

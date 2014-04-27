@@ -10,6 +10,7 @@ namespace SM
 	list<char*> GlobalBuffer::m_free_buffer_list;
 	GlobalBuffer::GlobalBuffer()
 	{
+		InitializeCriticalSection(&m_critical_section);
 		ExtendBuffer();
 	}
 	GlobalBuffer::~GlobalBuffer()
@@ -40,7 +41,7 @@ namespace SM
 
 	char* GlobalBuffer::PopFreeBufferPos()
 	{
-		SYNCHRONIZE_CS(&m_critical_section);
+		SYNCHRONIZE_CS(&g_critical_section);
 
 		if (m_free_buffer_list.empty())
 		{
@@ -54,7 +55,7 @@ namespace SM
 	}
 	void GlobalBuffer::PushFreeBufferPos(char* p_free_buffer_pos)
 	{
-		SYNCHRONIZE_CS(&m_critical_section);
+		SYNCHRONIZE_CS(&g_critical_section);
 
 		m_free_buffer_list.push_back(p_free_buffer_pos);
 	}
