@@ -120,8 +120,10 @@ namespace SM
 		GetSystemInfo(&system_info);
 		DWORD thread_id;
 		HANDLE thread_handle;
-		for (int i = 0; i < (int)system_info.dwNumberOfProcessors * 2; ++i)
-		//for (int i = 0; i < (int)1; ++i)
+		// 단일 쓰레드, 주석 풀면 멀티 쓰레드
+		// 멀티 쓰레드로 하실경우
+		// Synchronizer.h에서 최상단에 SYNCHRONIZE_CS 매크로 함수 주석 해제하세요!!
+		//for (int i = 0; i < (int)system_info.dwNumberOfProcessors * 2; ++i)
 		{
 			thread_handle = (HANDLE)_beginthreadex(NULL, 0, WorkerThreadFunction, NULL, 0, (unsigned int*)&thread_id);
 

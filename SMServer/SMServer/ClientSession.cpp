@@ -150,9 +150,26 @@ namespace SM
 			return false;
 		}
 
+		// 여기에서 한번 뿌려준다.
 		if (false == m_send_buffer->Write((char*)p_packet, p_packet->m_size))
 		{
+			printf("버퍼 딸린다..\n");
 			Disconnect();
+			/*
+			if (SendFlush() == false)
+			{
+				printf("ㅅㅂ2\n");
+				Disconnect();
+			}
+			SleepEx(INFINITE, TRUE);
+
+			// 다시 적는다.
+			if (false == m_send_buffer->Write((char*)p_packet, p_packet->m_size))
+			{
+				printf("ㅅㅂ3\n");
+				Disconnect();
+			}*/
+
 			return false;
 		}
 

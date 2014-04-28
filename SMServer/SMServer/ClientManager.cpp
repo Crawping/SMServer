@@ -27,6 +27,10 @@ namespace SM
 
 	void ClientManager::FlushClientSend()
 	{
+		if (TryEnterCriticalSection(&g_critical_section) == false)
+		{
+			return;
+		}
 		SYNCHRONIZE_CS(&g_critical_section);
 
 		for (auto& it : m_client_list)
@@ -57,6 +61,12 @@ namespace SM
 
 	void ClientManager::OnPeriodWork()
 	{
+		if (TryEnterCriticalSection(&g_critical_section) == false)
+		{
+			return;
+		}
+		SYNCHRONIZE_CS(&g_critical_section);
+
 		/// 접속이 끊긴 세션들 주기적으로 정리 (1초 정도 마다 해주자)
 		DWORD currTick = GetTickCount();
 		if (currTick - m_last_gc_tick >= 1000)
@@ -75,8 +85,6 @@ namespace SM
 
 	void ClientManager::CollectGarbageSessions()
 	{
-		SYNCHRONIZE_CS(&g_critical_section);
-
 		std::vector<ClientSession*> disconnectedSessions;
 
 		for (auto& it : m_client_list)
@@ -96,8 +104,6 @@ namespace SM
 
 	void ClientManager::ClientPeriodWork()
 	{
-		SYNCHRONIZE_CS(&g_critical_section);
-
 		for (auto& it : m_client_list)
 		{
 			ClientSession* client = it.second;

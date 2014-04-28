@@ -11,6 +11,7 @@ namespace SM
 
 		CircularBuffer(char* p_buffer, size_t p_size) : m_B_region_pointer(nullptr), m_A_region_size(0), m_B_region_size(0)
 		{
+			InitializeCriticalSectionAndSpinCount(&m_critical_section, 0x80000400);
 			m_buffer = p_buffer;
 			m_bufferEnd = p_buffer + p_size;
 			m_A_region_pointer = m_buffer;
@@ -21,7 +22,7 @@ namespace SM
 			g_GlobalBuffer->PushFreeBufferPos(m_buffer);
 		}
 
-		bool Peek(OUT char* destbuf, size_t bytes) const;
+		bool Peek(OUT char* destbuf, size_t bytes);
 		bool Read(OUT char* destbuf, size_t bytes);
 		bool Write(const char* data, size_t bytes);
 
@@ -117,6 +118,7 @@ namespace SM
 		}
 
 	private:
+		CRITICAL_SECTION m_critical_section;
 
 		char*	m_buffer;
 		char*	m_bufferEnd;

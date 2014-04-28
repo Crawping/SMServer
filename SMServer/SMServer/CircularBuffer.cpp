@@ -1,13 +1,16 @@
 #include "Stdafx.h"
 #include "Utility.h"
 #include "GlobalBuffer.h"
+#include "Synchronizer.h"
 
 #include "CircularBuffer.h"
 
 namespace SM
 {
-	bool CircularBuffer::Peek(OUT char* destbuf, size_t bytes) const
+	bool CircularBuffer::Peek(OUT char* destbuf, size_t bytes)
 	{
+		SYNCHRONIZE_CS(&m_critical_section);
+
 		assert(m_buffer != nullptr);
 
 		if (m_A_region_size + m_B_region_size < bytes)
@@ -44,6 +47,8 @@ namespace SM
 
 	bool CircularBuffer::Read(OUT char* destbuf, size_t bytes)
 	{
+		SYNCHRONIZE_CS(&m_critical_section);
+
 		assert(m_buffer != nullptr);
 
 		if (m_A_region_size + m_B_region_size < bytes)
@@ -110,6 +115,8 @@ namespace SM
 
 	bool CircularBuffer::Write(const char* data, size_t bytes)
 	{
+		SYNCHRONIZE_CS(&m_critical_section);
+
 		assert(m_buffer != nullptr);
 
 		/// Read와 반대로 B가 있다면 B영역에 먼저 쓴다
@@ -154,6 +161,8 @@ namespace SM
 
 	void CircularBuffer::Remove(size_t len)
 	{
+		SYNCHRONIZE_CS(&m_critical_section);
+
 		size_t cnt = len;
 
 		/// Read와 마찬가지로 A가 있다면 A영역에서 먼저 삭제
