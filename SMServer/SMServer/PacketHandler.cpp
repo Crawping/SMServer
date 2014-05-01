@@ -45,40 +45,38 @@ namespace SM
 		LoginRequest in_packet = static_cast<LoginRequest&>(p_packet);
 		p_client_session->m_recv_buffer->Read((char*)&in_packet, in_packet.m_size);
 
-		printf("Client's ID : [%d]\n", in_packet.m_player_id);
-		
-		LoginResult outPacket;
+		printf("Client's ID : [%s]\n", in_packet.m_player_id);
 
-		outPacket.m_player_id = p_client_session->m_player_id = in_packet.m_player_id;
+		LoginResult outPacket;
+		strcpy_s(p_client_session->m_player_id, in_packet.m_player_id);
+		strcpy_s(outPacket.m_player_id, p_client_session->m_player_id);
 		outPacket.m_pos_x = p_client_session->m_pos_x = 0;
 		outPacket.m_pos_y = p_client_session->m_pos_y = 0;
-		outPacket.m_pos_z = p_client_session->m_pos_z = 0;
-		sprintf_s(p_client_session->m_name, "player%d", in_packet.m_player_id);
-		strcpy_s(outPacket.m_name, p_client_session->m_name);
 
-		p_client_session->SendRequest(&outPacket);
-
-		p_client_session->m_logon = true;
+		if (!p_client_session->Broadcast(&outPacket))
+		{
+			p_client_session->Disconnect();
+		}
 	}
 
 	PACKET_HANDLING(PKT_CS_CHAT)
 	{
 		SYNCHRONIZE_CS(&g_critical_section);
 
-		ChatBroadcastRequest inPacket = static_cast<ChatBroadcastRequest&>(p_packet);
-		p_client_session->m_recv_buffer->Read((char*)&inPacket, inPacket.m_size);
+		//ChatBroadcastRequest inPacket = static_cast<ChatBroadcastRequest&>(p_packet);
+		//p_client_session->m_recv_buffer->Read((char*)&inPacket, inPacket.m_size);
 
-		ChatBroadcastResult outPacket;
-		outPacket.mPlayerId = inPacket.mPlayerId;
-		sprintf_s(outPacket.mName, "player%d", inPacket.mPlayerId);
-		strcpy_s(outPacket.mChat, inPacket.mChat);
+		//ChatBroadcastResult outPacket;
+		//outPacket.mPlayerId = inPacket.mPlayerId;
+		//sprintf_s(outPacket.mName, "player%d", inPacket.mPlayerId);
+		//strcpy_s(outPacket.mChat, inPacket.mChat);
 
-		// printf("%s : %s\n", outPacket.mName, outPacket.mChat);
+		//// printf("%s : %s\n", outPacket.mName, outPacket.mChat);
 
-		/// 채팅은 바로 방송 하면 끝
-		if (!p_client_session->Broadcast(&outPacket))
-		{
-			p_client_session->Disconnect();
-		}
+		///// 채팅은 바로 방송 하면 끝
+		//if (!p_client_session->Broadcast(&outPacket))
+		//{
+		//	p_client_session->Disconnect();
+		//}
 	}
 }

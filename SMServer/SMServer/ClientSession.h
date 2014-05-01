@@ -63,11 +63,9 @@ namespace SM
 
 	private:
 		// 여기에 각 Player의 정보를 넣어줍니다.
-		int m_player_id;
+		char m_player_id[MAX_NAME_LEN];
 		double m_pos_x;
 		double m_pos_y;
-		double m_pos_z;
-		char m_name[MAX_NAME_LEN];
 	private:
 		SOCKET m_socket;
 		SOCKADDR_IN m_sockaddr_in;
